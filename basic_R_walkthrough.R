@@ -1,6 +1,9 @@
 ###### Here are the notes/reminders for myself #####
 
-#####                 ------------Select Columns-----------             #####
+#####                 ------------ Enviroment SetUp -----------             #####
+
+
+#####                 ------------ Select Columns -----------               #####
 
 # use1: data %>% select(colname1, colname2, colname3,...) %>% glimpse() 
 # Note: use pipe; select based on column names; order matters
@@ -35,7 +38,7 @@
 # use9: data %>% select_all(toupper/tolower)
 # can use select_all to select all columns
 
-#####                 ------------Column Names -----------             #####
+#####                 ------------ Column Names -----------             #####
 # use1: data %>% select(colname1, colname2, colname3 = new_colname3) %>% glimpse() 
 # rename the column within select function
 
@@ -45,7 +48,44 @@
 # use3: data %>% select_all(~str_replace(., " ", "_"))
 # replace the "dot" in all column names from white space to _
 
-# ues4: data %>% tibble::rownames_to_column("colname") %>% head 
+# use4: data %>% tibble::rownames_to_column("colname") %>% head 
 # to turn a rowname into a specific column
+
+#####                 ------------ Column Transformation -----------             #####
+
+### use MUTATE function in dplyr package ###
+## Mutate: to make a change of the original data frame; 
+
+# use1: data %>% select(colname1,colname2) %>% mutate(colname3 = colname1 - 20) 
+# Note: can add new columns from basic operations, such as "max","min","sum","avg","round"
+
+# use2: data %>% select(colname1,contains("key")) %>% rowwise() %>% mutate(avg = mean(c(col1,col2)))
+# Note: can add new columns based on rowwise operation rowwise()
+# to calculate the mean of two vectors we need to use c(vec1,vec2)
+# use contain() to select specific rows
+
+# use3: data %>% select(colname1,colname2) %>% mutate(newcolmn = ifelse(colname1>4,NA,colname1)) %>% arrange(desc(colname1))
+# Note: use ifelse to mutate part of the rows ; or use str_extract() function 
+# str_extract(name,pattern = "\\w+$")
+
+# use4: data %>% mutate_all(tolower)
+# example: newdata <- data %>% msleep %>% mutate_all(~paste(.,"  /n"))
+# Note: mutate all columns 
+# ~str_replace_all(.,"/n","")
+# 
+
+# use5: data %>% select(col1,col3:col7) %>% mutate_if(is.numeric, round)
+# use mutate_if with the first argument being a boolean array and the second argument as function
+# 
+
+# use6: data %>% mutate_at(vars(contains("sleep")),~(.*60))
+# use all possible selection method and wrap it inside vars()
+# 
+
+# use7:  
+#
+#
+
+
 
 
