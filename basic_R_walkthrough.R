@@ -157,7 +157,10 @@ Note1:use between() or two logical requirements to select rows within a range
 
 ## use5: data %>% select(col1,col2,col3) %>% filter_all(any)vars(str_detect(.,pattern = "")))  
 # any_vars()
-# 
+# filter_if(any_vars(is.na(.)))
+# filter_at(is.character,any_vars(is.na()))
+
+## use6: 
 
 
 
