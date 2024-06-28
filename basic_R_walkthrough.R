@@ -82,9 +82,18 @@
 # use all possible selection method and wrap it inside vars()
 # 
 
-# use7:  
-#
-#
+### use GATHER()/SPREAD() function in dplyr package ###
+# gather() and spread()
+# gather() is used to create a long table and concatenate several columns together
+# spread() is used to split a long table back to wide table
+
+# Use1: data %>% select(colname1,contains("keyword")) %>% gather(key="new_colname",value = "col2",-col3,factor_key=TRUE) 
+# key - create a new column that cover the contents of the columns, use values from col2.
+# value - the column that we extract values from 
+# factor_key = TRUE can make the new column into an ordered column
+
+# Use2: 
+
 
 
 
