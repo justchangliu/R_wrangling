@@ -82,6 +82,36 @@
 # use all possible selection method and wrap it inside vars()
 # 
 
+### WORK WITH DISCRETE COLUMNS ###
+## Columns that contain no-numerical values
+# use7: data %>% mutate(newcol = recode_factor(oldcol, 
+"keyword1" = "newkeyword1"
+"keyword2" = "newkeyword2"
+.default = "other"
+.missing = "no data"
+.ordered = TRUE )) %>% count(newcol)
+# Note: .default is for the rest of the columns
+# .missing is to rename NA into a category
+# .ordered = TRUE is to return a factored column
+
+
+# use8: data %>% select(col1,col2) %>% mutate(col3 = ifelse( col3>10, "long","short"))
+# use ifelse to make two levels discrete column
+
+# use9: data %>% select(col1,col2) %>% mutate(col2_discrete = case_when(
+col2 > num1 ~ "level1",
+col2 > num2 ~ "level2",
+col2 > num3 ~ "level3",
+TRUE ~ "level4")) %>% 
+mutate(col2_discrete = factor(col2_discrete, levels = c("level1","level2","level3","level4")))
+# Note: see how this can be used to refactor the column level
+
+# use10: new_table <- old_table %>% separate("col_name", into = c("col","name",sep = "_")
+# we can replace separate() with unite()
+
+
+
+
 ### use GATHER()/SPREAD() function in dplyr package ###
 # gather() and spread()
 # gather() is used to create a long table and concatenate several columns together
@@ -92,8 +122,42 @@
 # value - the column that we extract values from 
 # factor_key = TRUE can make the new column into an ordered column
 
-# Use2: 
+# Use2: data %>% select(col1:col2) %>% na_if("keyword_matching")
+#
 
+
+
+
+
+
+#####                 ------------ Row Operations -----------             #####
+## filter(dataset,condition)
+## operators can be used: >, >= , < , <=, ==, != 
+
+## Use1: data %>% select(col1,col2) %>% filter(between(col1,num1,num2))
+Note1:use between() or two logical requirements to select rows within a range
+#  can also use near(col1,value1, tol = value2),will select values between value +/- 
+# for example can calcaculate tol = sd() as a standard deviation
+
+## use2: data %>% select(col1,col2,col3) %>% filter(col1 == "match_key_word")
+# Note: col1 != "keyword"
+# Note: name > "v" will select the rows with a name in the alphabet after the letter v
+# col1 %in% c("keyword1","keyword2")
+# !col1 %in% c("keyword1","keyword2","keyword3")  -> use exclamation sign "!" to deselect rows  
+
+## use3: data %>% select(col1,col2) %>% filter()
+# use str_detect(tolower(col1),pattern = "keyword")
+# use grepl(pattern = "mouse", tolower())
+
+## use4: data %>% select(col1,col2,col3) %>% filter( col1> value1, (col2 > num2 | col3 != "keyword))
+# Note: filter(condition1, condition2) : get rows meet both conditions
+# filter(condition1, !condition2) 
+# xor() 
+# !is.na(): will generate a table without empty rows 
+
+## use5: data %>% select(col1,col2,col3) %>% filter_all(any)vars(str_detect(.,pattern = "")))  
+# any_vars()
+# 
 
 
 
