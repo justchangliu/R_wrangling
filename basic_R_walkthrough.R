@@ -1,6 +1,8 @@
 ###### Here are the notes/reminders for myself #####
 
+
 #####                 ------------ Enviroment SetUp -----------             #####
+
 
 #####                 ------------ Quoting Functions ----------             #####
 # 
@@ -137,7 +139,7 @@ mutate(col2_discrete = factor(col2_discrete, levels = c("level1","level2","level
 ## operators can be used: >, >= , < , <=, ==, != 
 
 ## Use1: data %>% select(col1,col2) %>% filter(between(col1,num1,num2))
-Note1:use between() or two logical requirements to select rows within a range
+# Note1:use between() or two logical requirements to select rows within a range
 #  can also use near(col1,value1, tol = value2),will select values between value +/- 
 # for example can calcaculate tol = sd() as a standard deviation
 
