@@ -2,10 +2,21 @@
 
 
 #####                 ------------ Enviroment SetUp -----------             #####
+### Wrapper functions : decorate a function, like subfunction in MATLAB
+# Check out this page: https://www.runoob.com/w3cnote/python-func-decorators.html
+### quoting functions : 
+
 
 
 #####                 ------------ Quoting Functions ----------             #####
+# use1: 
+
+
+#####                 ------------ 
+Functions ----------             #####
 # 
+
+
 
 #####                 ------------ Select Columns -----------               #####
 
